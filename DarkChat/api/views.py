@@ -20,8 +20,8 @@ class GetValid_Code(APIView):
     '''
     def get(self, request, format=None):
         while True:
-            letters = string.ascii_letters + string.digits
-            random_code = ''.join(random.choice(letters) for i in range(25))
+            chars = string.ascii_letters + string.digits
+            random_code = ''.join(random.choice(chars) for i in range(25))
 
             if Validـcodes.objects.filter(valid_code=random).exists():
                 continue
