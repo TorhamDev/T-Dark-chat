@@ -14,7 +14,7 @@ class User_code(models.Model):
 
 
 
-class messages(models.Model):
+class Messages(models.Model):
     '''
     user messages database model
     '''
@@ -27,3 +27,15 @@ class messages(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     
+
+class Validـcodes(models.Model):
+    '''
+    Database to check user codes when registering
+    '''
+
+    valid_code = models.CharField(max_length=25, unique=True)
+    is_valid = models.BooleanField(default=False)
+
+
+    create_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
