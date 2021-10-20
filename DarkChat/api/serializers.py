@@ -5,7 +5,7 @@ from api.models import Validـcodes, Messages
 class ValidCodesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Validـcodes
-        fields = ["valid_code","is_valid"]
+        fields = ["valid_code"]
 
 
 
