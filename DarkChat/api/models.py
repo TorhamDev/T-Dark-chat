@@ -7,7 +7,7 @@ class User_code(models.Model):
     '''
 
     username_code = models.CharField(max_length=25, unique=True)
-    username_code_pass = models.CharField(max_length=50)
+    username_code_pass = models.CharField(max_length=256)
 
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
