@@ -12,7 +12,8 @@ class User_code(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
-
+    def __str__(self) -> str:
+        return self.username_code
 
 class Messages(models.Model):
     '''
@@ -39,3 +40,15 @@ class Validـcodes(models.Model):
 
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
+
+
+class SendToken(models.Model):
+    '''
+    token for send message
+    '''
+
+    token = models.CharField(max_length=70, unique=True)
+    user_token = models.ForeignKey("User_code", on_delete=models.CASCADE)
+
+    is_valid = models.BooleanField(default=False)
+    create_date = models.DateTimeField(auto_now_add=True)

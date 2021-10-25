@@ -8,15 +8,16 @@ class ValidCodesSerializer(serializers.ModelSerializer):
         fields = ["valid_code"]
 
 
-
-
-class MessagesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Messages
-        fields = ["message_text", "sender", "receiver", "date"]
-
-
 class UserCodesSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_code
         fields = ["username_code", "create_date"]
+
+
+
+class MessagesSerializer(serializers.ModelSerializer):
+    sender_user = serializers.StringRelatedField()
+    receiver_user = serializers.StringRelatedField()
+    class Meta:
+        model = Messages
+        fields = ["message_text","receiver_user","sender_user","date"]
