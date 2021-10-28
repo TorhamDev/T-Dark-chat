@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/v1/messages/get-last-message', views.GetLastMessage.as_view(), name="get last message"),
     path('api/v1/users/upadte-user-code', views.UpadteUserCode.as_view(), name="upadte user code"),
     path('api/v1/users/upadte-user-token', views.UpadteToken.as_view(), name="upadte user token"),
+    path('api/v1/users/check-user-alive', views.CheckuserIsAlive.as_view(), name="check that the user is alive"),
 ]
