@@ -4,7 +4,8 @@ from api.serializers import ValidCodesSerializer, MessagesSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from datetime import timedelta
+from django.utils.timezone import now
 import random
 import string
 import hashlib
@@ -47,8 +48,9 @@ def UserCodeCreator():
 
 # Create your views here.
 def index(request):
-
-    return HttpResponse("hi :)")
+    last_hour_date_time = now() - timedelta(hours = 1)
+    time_now = now()
+    return HttpResponse(f"hi :)<br>{time_now} <br> {last_hour_date_time}")
 
 class GetValid_Code(APIView):
     '''
@@ -76,24 +78,29 @@ class SetUserPasswordCode(APIView):
     set user password and save in database
     '''
     def post(self,request, foramt=None):
+        try:
+            user_code = request.data["user_code"]
+            user_code_password = request.data["user_code_password"]
+            time_for_death = request.data["death_time"]
+            ## hashing usr password to sha256
+            user_code_password = hashlib.sha256(str(user_code_password).encode()).hexdigest()
 
-        user_code = request.data["user_code"]
-        user_code_password = request.data["user_code_password"]
+            user_code_is_valid = False
+        
+        except Exception as ex:
+            return Response({"description":"Input is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
-        ## hashing usr password to sha256
-        user_code_password = hashlib.sha256(str(user_code_password).encode()).hexdigest()
-
-
-        user_code_is_valid = False
 
         if Validـcodes.objects.filter(valid_code=user_code).exists():
 
             user_code_is_valid =  Validـcodes.objects.filter(valid_code=user_code).first().is_valid
             if user_code_is_valid:
                 try:
-    
+                    
+                    death_time = now() + timedelta(hours = int(time_for_death))
+                    time_now = now()
                     ## save user code and password
-                    user = User_code(username_code=user_code, username_code_pass=user_code_password)
+                    user = User_code(username_code=user_code, username_code_pass=user_code_password, create_date=time_now, time_of_death=death_time)
                     user.save()
 
                     ## change is_valid to False
@@ -118,6 +125,18 @@ class SetUserPasswordCode(APIView):
         return Response({"description":"Input is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 
 
+def CheckUserDeath(user_code):
+    user = User_code.objects.filter(username_code=user_code).first()
+    user_create_time = user.create_date
+    user_death_time = user.time_of_death
+    time_now = now()
+    if time_now == user_death_time or time_now >= user_death_time:
+        user.delete()
+        return "user death"
+
+    else:
+        return "user live"
+
 class SendMessage(APIView):
     '''
     send message betwin users
@@ -129,6 +148,10 @@ class SendMessage(APIView):
             receiver_code = request.data["receiver"]
             message_text = request.data["text"]
 
+            user_check = CheckUserDeath(user_code=user_code)
+
+            if user_check == "user death":
+                return Response({"description":"User is not allowed"}, status=status.HTTP_403_FORBIDDEN)
 
             sender_is_valid = False
             rereceiver_is_valid = False

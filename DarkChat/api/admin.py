@@ -9,7 +9,7 @@ class MessagesAdmin(admin.ModelAdmin):
 
 
 class User_codeAdmin(admin.ModelAdmin):
-    list_display = ("username_code", "create_date", "update_date")
+    list_display = ("username_code", "create_date", "time_of_death")
 
 
 class Valid_codeAdmin(admin.ModelAdmin):
