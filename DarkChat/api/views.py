@@ -285,3 +285,19 @@ class UpadteToken(APIView):
             
         except Exception as ex:
             return Response({"description":"Input is incorrect"}, status=status.HTTP_400_BAD_REQUEST)
+        
+class CheckUserIsAlive(APIView):
+    def post(self, request, foramt=None):
+        try:
+
+            user_code = request.data["user_code"]
+            user_status = CheckUserDeath(user_code)
+            if user_status == "user live":
+                return Response({"description":"This user is live"}, status=status.HTTP_200_OK)
+
+            if user_status == "user death":
+                return Response({"description":"This user is dead"}, status=status.HTTP_200_OK)   
+
+        except Exception as ex:
+            return Response({"description":"Input is incorrect"}, status=status.HTTP_400_BAD_REQUEST)           
+
