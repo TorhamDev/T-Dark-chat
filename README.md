@@ -38,3 +38,28 @@ python3 manage.py createsuperuser
 python3 manage.py runserver
 
 ```
+
+# Api endpoint
+```text
+1. api/v1/register/get-valid-code/ 
+    [get valid code] (Method : GET)
+
+2. api/v1/register/set-user-password/ 
+    [set password] (Method : POST)
+
+3. api/v1/messages/send 
+    [send message] (Method : POST)
+
+4. api/v1/messages/get-last-message 
+    [get last message] (Method : POST)
+
+5. api/v1/users/upadte-user-code 
+    [upadte user code] (Method : POST)
+
+6. api/v1/users/upadte-user-token 
+    [upadte user token] (Method : POST)
+
+7. api/v1/users/check-user-alive 
+    [check that the user is alive] (Method : POST)
+
+```
