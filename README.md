@@ -1,3 +1,7 @@
+<p align="center">
+<img src='./cover.png' style="border: white;border-radius: 2pc;" alt='Dark chat'/>
+</p>
+
 # T-Dark-chat
 An anonymous messenger without the need for any registration information
 
