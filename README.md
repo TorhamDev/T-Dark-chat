@@ -3,10 +3,14 @@
 </p>
 
 # T-Dark-chat
-An anonymous messenger without the need for any registration information
+
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
+<br>
+
+> An anonymous messenger without the need for any registration information
 
 
-### What is Dark Chat?
+## What is Dark Chat?
 DarkChat is an anonymous messenger with one-time accounts that you do not need any registration information to enter. 
 <br>
 
@@ -16,7 +20,7 @@ When you register in Dark Chat, you can specify the lifespan of your account fro
 You can change your username at any time during these hours, and if you are talking to someone, your conversation will be lost because your username will change and that person will not have your new username. 
 <br>
 
-Think of something like an **email** to understand more
+> Think of something like an **email** to understand more
 <br>
 
 ### How to run this project?
