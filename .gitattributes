@@ -1,4 +1,4 @@
 * linguist-vendored
-*.py
+*.py linguist-vendored=false
 *.png
 *.js
