@@ -31,7 +31,7 @@ cd T-Dark-chat/
 
 pip3 install -r requirement.txt
 
-cd DarkChat/ 
+cd back_end/DarkChat/
 
 python3 manage.py makemigrations
 
